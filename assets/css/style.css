@@ -69,22 +69,3 @@ button[disabled] {
     font-size: 80%;
   }
 }
-
-#prompt {
-  max-width: 66%;
-  margin: auto;
-  border-radius: 1rem;
-  background-color: burlywood;
-  font-size: 125%;
-  line-height: 125%;
-}
-
-#criteria div, #character-types div {
-  padding: 1rem;
-  padding-left: 30%;
-  text-align: left;
-}
-
-#length {
-  padding: 1rem;
-}
