@@ -79,7 +79,7 @@ button[disabled] {
   line-height: 125%;
 }
 
-#criteria div {
+#criteria div, #character-types div {
   padding: 1rem;
   padding-left: 30%;
   text-align: left;
