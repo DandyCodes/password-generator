@@ -13,50 +13,61 @@ class PasswordOptions {
   }
 }
 const passwordTextarea = document.querySelector('#password');
-const generateButton = document.querySelector('#generate');
-generateButton.addEventListener('click', prompts);
+const generateButton = document.querySelector('button');
+generateButton.onclick = generateClicked;
 
 
-function prompts() {
+function generateClicked() {
   const passwordOptions = new PasswordOptions;
-  passwordOptions.criteria.specifyLength = confirm('Specify length?');
-  passwordOptions.criteria.specifyCharacterTypes = confirm('Specify character types?');
+  passwordOptions.criteria = confirmCriteria();
   if (passwordOptions.criteria.specifyLength) {
-    let length = prompt('Enter a password length');
-    while (isNaN(length) || length < 8 || length > 128) {
-      length = prompt('Invalid input. Must be a number between 8 and 128');
-    }
-    passwordOptions.length = length;
+    passwordOptions.length = promptLength();
   }
   if (passwordOptions.criteria.specifyCharacterTypes) {
-    passwordOptions.characterTypes = '';
-    while(!passwordOptions.characterTypes) {
-      if(confirm('Include lowercase letters?')) {
-        passwordOptions.characterTypes += lowerCaseLetters;
-      }
-      if(confirm('Include uppercase letters?')) {
-        passwordOptions.characterTypes += upperCaseLetters;
-      }
-      if(confirm('Include numeric characters?')) {
-        passwordOptions.characterTypes += numericCharacters;
-      }
-      if(confirm('Include special characters?')) {
-        passwordOptions.characterTypes += specialCharacters;
-      }
-      if(!passwordOptions.characterTypes) {
-        alert('At least one character type must be selected');
-      }
+    passwordOptions.characterTypes = confirmCharacterTypes();
+  }
+  passwordTextarea.value = generatePassword(passwordOptions);
+}
+
+function confirmCriteria() {
+  const criteria = {
+    specifyLength: false,
+    specifyCharacterTypes: false
+  }
+  criteria.specifyLength = confirm('Specify length?');
+  criteria.specifyCharacterTypes = confirm('Specify character types?');
+  return criteria;
+}
+
+function promptLength() {
+  let length = prompt('Enter a password length');
+  while (isNaN(length) || length < 8 || length > 128) {
+    length = prompt('Invalid input. Must be a number between 8 and 128');
+  }
+  return length;
+}
+
+function confirmCharacterTypes() {
+  let characterTypes = '';
+  while(!characterTypes) {
+    if(confirm('Include lowercase letters?')) {
+      characterTypes += lowerCaseLetters;
+    }
+    if(confirm('Include uppercase letters?')) {
+      characterTypes += upperCaseLetters;
+    }
+    if(confirm('Include numeric characters?')) {
+      characterTypes += numericCharacters;
+    }
+    if(confirm('Include special characters?')) {
+      characterTypes += specialCharacters;
+    }
+    if(!characterTypes) {
+      alert('At least one character type must be selected');
     }
   }
-  writePassword(passwordOptions);
+  return characterTypes;
 }
-
-
-function writePassword(passwordOptions) {
-  const password = generatePassword(passwordOptions);
-  passwordTextarea.value = password;
-}
-
 
 function generatePassword(passwordOptions) {
   let password = '';

@@ -4,10 +4,6 @@
   padding: 0;
 }
 
-:root, body {
-  height: 100%;
-}
-
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f9fbfd;
@@ -30,32 +26,24 @@ main {
 textarea {
   resize: none;
   max-width: 90%;
-  min-height: 100px;
+  min-height: 10rem;
+  width: 100%;
+  text-align: center;
+  border: 0.15rem dashed #c0c7cf;
+  border-radius: 0.4rem;
 }
 
 button {
   border: none;
   background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0.1rem 0.6rem 0, rgba(0, 0, 0, 0.4) 0 0.1rem 0.1rem 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.2rem 1.2rem 0, rgba(0, 0, 0, 0.4) 0 0.2rem 0.2rem 0;
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 22px;
   margin: 1em;
   padding: 1em 2em;
   cursor: pointer;
-}
-
-button[disabled] {
-  cursor: default;
-  background: #c0c7cf;
-}
-
-#password {
-  width: 100%;
-  text-align: center;
-  border: 0.15rem dashed #c0c7cf;
-  border-radius: 0.4rem;
 }
 
 @media (max-width: 1000px) {
