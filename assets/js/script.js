@@ -22,8 +22,11 @@ function promptLength(min, max) {
 
 function confirmCharacters(allCharacters) {
   let validCharacters = '';
-  for (const key in allCharacters) {
-    if (confirm(`Include ${key} characters?`)) validCharacters += allCharacters[key];
+  while(!validCharacters) {
+    for (const key in allCharacters) {
+      if (confirm(`Include ${key} characters?`)) validCharacters += allCharacters[key];
+    }
+    if (!validCharacters) alert('At least one character type must be selected');
   }
   return validCharacters;
 }
