@@ -47,14 +47,8 @@ main {
   cursor: pointer;
 }
 
-@media (max-width: 1000px) {
-  body {
-    font-size: 90%;
-  }
-}
-
 @media (max-width: 768px) {
-  body {
+  body, #generate {
     font-size: 80%;
   }
 }
