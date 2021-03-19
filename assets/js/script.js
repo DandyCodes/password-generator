@@ -1,85 +1,41 @@
-const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const numericCharacters = '0123456789';
-const specialCharacters = ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
-class PasswordOptions {
-  constructor() {
-    this.criteria = {
-      specifyLength: false,
-      specifyCharacterTypes: false
-    }
-    this.length = randomIntInRange(8, 129);
-    this.characterTypes = lowerCaseLetters + upperCaseLetters + numericCharacters + specialCharacters;
-  }
-}
-const passwordTextarea = document.querySelector('#password');
-const generateButton = document.querySelector('button');
-generateButton.onclick = generateClicked;
+document.querySelector('#generate').onclick = validateCriteria;
 
-
-function generateClicked() {
-  const passwordOptions = new PasswordOptions;
-  passwordOptions.criteria = confirmCriteria();
-  if (passwordOptions.criteria.specifyLength) {
-    passwordOptions.length = promptLength();
+function validateCriteria() {
+  const length = promptLength(8, 128);
+  const allCharacters = {
+    lowercase: 'abcdefghijklmnopqrstuvwxyz',
+    uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    numeric: '0123456789',
+    special: ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
   }
-  if (passwordOptions.criteria.specifyCharacterTypes) {
-    passwordOptions.characterTypes = confirmCharacterTypes();
-  }
-  passwordTextarea.value = generatePassword(passwordOptions);
+  const validCharacters = confirmCharacters(allCharacters);
+  document.querySelector('#password').value = generatePassword(length, validCharacters);
 }
 
-function confirmCriteria() {
-  const criteria = {
-    specifyLength: false,
-    specifyCharacterTypes: false
-  }
-  criteria.specifyLength = confirm('Specify length?');
-  criteria.specifyCharacterTypes = confirm('Specify character types?');
-  return criteria;
-}
-
-function promptLength() {
-  let length = prompt('Enter a password length');
-  while (isNaN(length) || length < 8 || length > 128) {
-    length = prompt('Invalid input. Must be a number between 8 and 128');
+function promptLength(min, max) {
+  let length = prompt('Enter a length');
+  while (isNaN(length) || length < min || length > max) {
+    length = prompt(`Length must be a number between ${min} and ${max}`);
   }
   return length;
 }
 
-function confirmCharacterTypes() {
-  let characterTypes = '';
-  while(!characterTypes) {
-    if(confirm('Include lowercase letters?')) {
-      characterTypes += lowerCaseLetters;
-    }
-    if(confirm('Include uppercase letters?')) {
-      characterTypes += upperCaseLetters;
-    }
-    if(confirm('Include numeric characters?')) {
-      characterTypes += numericCharacters;
-    }
-    if(confirm('Include special characters?')) {
-      characterTypes += specialCharacters;
-    }
-    if(!characterTypes) {
-      alert('At least one character type must be selected');
-    }
+function confirmCharacters(allCharacters) {
+  let validCharacters = '';
+  for (const key in allCharacters) {
+    if (confirm(`Include ${key} characters?`)) validCharacters += allCharacters[key];
   }
-  return characterTypes;
+  return validCharacters;
 }
 
-function generatePassword(passwordOptions) {
+function generatePassword(length, validCharacters) {
   let password = '';
-  for (let i = 0; i < passwordOptions.length; i++) {
-    password += passwordOptions.characterTypes[randomIntInRange(0, passwordOptions.characterTypes.length)];
+  for (let i = 0; i < length; i++) {
+    password += validCharacters[randomIntInRange(0, validCharacters.length)];
   }
   return password;
 }
 
-/**
- * Returns a random integer between the `min`(inclusive) and `max`(exclusive).
- */
 function randomIntInRange(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }

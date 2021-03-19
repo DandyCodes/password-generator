@@ -23,7 +23,7 @@ main {
   max-width: 50rem;
 }
 
-textarea {
+#password {
   resize: none;
   max-width: 90%;
   min-height: 10rem;
@@ -31,13 +31,14 @@ textarea {
   text-align: center;
   border: 0.15rem dashed #c0c7cf;
   border-radius: 0.4rem;
+  font-size: 1.5rem;
 }
 
-button {
+#generate {
   border: none;
   background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0.2rem 1.2rem 0, rgba(0, 0, 0, 0.4) 0 0.2rem 0.2rem 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.1rem 0.6rem 0, rgba(0, 0, 0, 0.4) 0 0.1rem 0.1rem 0;
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 22px;
@@ -47,13 +48,13 @@ button {
 }
 
 @media (max-width: 1000px) {
-  body, button {
+  body {
     font-size: 90%;
   }
 }
 
 @media (max-width: 768px) {
-  body, button {
+  body {
     font-size: 80%;
   }
 }
