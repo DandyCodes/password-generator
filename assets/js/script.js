@@ -14,7 +14,7 @@ function validateCriteria() {
 
 function promptLength(min, max) {
   let length = prompt('Enter a length');
-  while (isNaN(length) || length < min || length > max) {
+  while (length < min || length > max || isNaN(length)) {
     length = prompt(`Length must be a number between ${min} and ${max}`);
   }
   return length;
