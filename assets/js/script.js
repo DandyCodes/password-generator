@@ -1,24 +1,30 @@
-document.querySelector('#generate').onclick = validateCriteria;
+const characters = {
+  lowercase: 'abcdefghijklmnopqrstuvwxyz',
+  uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  numeric: '0123456789',
+  special: ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+}
+document.querySelector('#generate').onclick = generatePassword;
 
-function validateCriteria() {
-  const characters = {
-    lowercase: 'abcdefghijklmnopqrstuvwxyz',
-    uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    numeric: '0123456789',
-    special: ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+function generatePassword() {
+  const length = getLength();
+  const validCharacters = getValidCharacters();
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    password += validCharacters[randomIntInRange(0, validCharacters.length)];
   }
-  alert(generatePassword(getLength(8, 128), getCharacters(characters)));
+  alert(password);
 }
 
-function getLength(min, max) {
+function getLength() {
   let length = prompt('Enter a length');
-  while (length < min || length > max || isNaN(length)) {
-    length = prompt(`Length must be a number between ${min} and ${max}`);
+  while (length < 8 || length > 128 || isNaN(length)) {
+    length = prompt('Length must be a number between 8 and 128');
   }
   return length;
 }
 
-function getCharacters(characters) {
+function getValidCharacters() {
   let validCharacters = '';
   while(!validCharacters) {
     for (const key in characters) {
@@ -27,14 +33,6 @@ function getCharacters(characters) {
     if (!validCharacters) alert('At least one character type must be selected');
   }
   return validCharacters;
-}
-
-function generatePassword(length, validCharacters) {
-  let password = '';
-  for (let i = 0; i < length; i++) {
-    password += validCharacters[randomIntInRange(0, validCharacters.length)];
-  }
-  return password;
 }
 
 function randomIntInRange(min, max) {
