@@ -17,7 +17,7 @@ function generatePassword() {
 }
 
 function getLength() {
-  let length = prompt('Enter a length');
+  let length = prompt('Enter length');
   while (length < 8 || length > 128 || isNaN(length)) {
     length = prompt('Length must be a number between 8 and 128');
   }
