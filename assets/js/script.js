@@ -7,8 +7,8 @@ const characters = {
 document.querySelector('#generate').onclick = generatePassword;
 
 function generatePassword() {
-  const length = getLength();
-  const validCharacters = getValidCharacters();
+  const length = promptLength(8, 128);
+  const validCharacters = confirmValidCharacters();
   let password = '';
   for (let i = 0; i < length; i++) {
     password += validCharacters[randomIntInRange(0, validCharacters.length)];
@@ -16,15 +16,15 @@ function generatePassword() {
   alert(password);
 }
 
-function getLength() {
+function promptLength(min, max) {
   let length = prompt('Enter length');
-  while (length < 8 || length > 128 || isNaN(length)) {
-    length = prompt('Length must be a number between 8 and 128');
+  while (length < min || length > max || isNaN(length)) {
+    length = prompt(`Length must be a number between ${min} and ${max}`);
   }
   return length;
 }
 
-function getValidCharacters() {
+function confirmValidCharacters() {
   let validCharacters = '';
   while(!validCharacters) {
     for (const key in characters) {
