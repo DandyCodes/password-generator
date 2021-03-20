@@ -18,14 +18,14 @@ main {
   border-right: groove black 2px;
   border-bottom: groove black 2px;
   outline: none;
-	width: 15rem;
-	height: 15rem;
-	border-radius: 50%;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
   background-color: #941a1a;
   color: white;
-	box-shadow: 0 0.3rem 1rem 0px rgb(161, 50, 65);
-	transform: translatey(0px);
-	animation: float 1.5s ease-in-out infinite;
+  box-shadow: 0 0.3rem 1rem 0px rgb(161, 50, 65);
+  transform: translatey(0px);
+  animation: float 1.5s ease-in-out infinite;
   cursor: pointer;
 }
 
