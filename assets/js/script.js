@@ -1,6 +1,6 @@
-document.querySelector('#generate').onclick = validateCriteria;
+document.querySelector('#generate').onclick = validateCriteriaAndDisplayPassword;
 
-function validateCriteria() {
+function validateCriteriaAndDisplayPassword() {
   const length = promptLength(8, 128);
   const allCharacters = {
     lowercase: 'abcdefghijklmnopqrstuvwxyz',
@@ -8,7 +8,7 @@ function validateCriteria() {
     numeric: '0123456789',
     special: ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
   }
-  const validCharacters = confirmCharacters(allCharacters);
+  const validCharacters = confirmValidCharacters(allCharacters);
   document.querySelector('#password').value = generatePassword(length, validCharacters);
 }
 
@@ -20,7 +20,7 @@ function promptLength(min, max) {
   return length;
 }
 
-function confirmCharacters(allCharacters) {
+function confirmValidCharacters(allCharacters) {
   let validCharacters = '';
   while(!validCharacters) {
     for (const key in allCharacters) {
