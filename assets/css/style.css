@@ -31,7 +31,6 @@ main {
 	box-shadow: 0 0.3rem 1rem 0px rgb(255, 84, 141);
 }
 
-
 @keyframes float {
 	0% {
 		transform: translatey(0rem);
