@@ -9,7 +9,7 @@ document.querySelector('#generate').onclick = generatePassword;
 function generatePassword() {
   const length = promptLength(8, 128);
   const validCharacters = confirmValidCharacters();
-  const text = document.querySelector('#text');
+  const text = document.querySelector('#password');
   text.textContent = '';
   let count = 0;
   const intervalID = setInterval(() => {

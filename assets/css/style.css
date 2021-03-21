@@ -1,7 +1,8 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
+	--dark: #161718;
+	background-color: var(--dark);
 	color: white;
-	background-color: #161718;
 	position: relative;
 	top: 4rem;
 }
@@ -29,13 +30,17 @@ body {
 	box-shadow: 0 0.3rem 1rem 0px rgb(255, 84, 141);
 }
 
-#text {
-	border: dashed white 0.1rem;
+#password {
+	height: 20rem;
+	text-align: center;
+	display: block;
+	resize: none;
+	background-color: var(--dark);
+	color: white;
 	font-size: 1.5rem;
-	max-width: 50rem;
+	width: 90%;
 	margin: 2rem auto;
 	overflow-wrap: break-word;
-    user-select: all;
 }
 
 @keyframes float {
@@ -47,5 +52,14 @@ body {
 	}
 	100% {
 		transform: translatey(0rem);
+	}
+}
+
+/*
+FOR ABOVE 768px
+*/
+@media screen and (min-width: 768px) {
+	#password {
+		width: 40rem;
 	}
 }
