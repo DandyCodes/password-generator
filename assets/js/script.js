@@ -9,11 +9,14 @@ document.querySelector('#generate').onclick = generatePassword;
 function generatePassword() {
   const length = promptLength(8, 128);
   const validCharacters = confirmValidCharacters();
-  let password = '';
-  for (let i = 0; i < length; i++) {
-    password += validCharacters[randomIntInRange(0, validCharacters.length)];
-  }
-  alert(password);
+  const text = document.querySelector('#text');
+  text.textContent = '';
+  let count = 0;
+  const intervalID = setInterval(() => {
+    text.textContent += validCharacters[randomIntInRange(0, validCharacters.length)];
+    count++;
+    if (count >= length) clearInterval(intervalID);
+  }, 30);
 }
 
 function promptLength(min, max) {
