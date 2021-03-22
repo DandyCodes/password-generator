@@ -4,6 +4,7 @@ This repository contains a minimalistic password generator.
 The UI is clean, polished and responsive to multiple screen sizes.
 The user is given prompts to choose criteria which is validated.
 They are then presented with a password matching the chosen criteria.
+The generator ensures that at least one of each type of character type included by the user appears in the generated password.
 
 ![a screenshot of the deployed website](/assets/images/screenshot.png)
 ## Usage
